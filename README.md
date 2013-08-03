@@ -1,8 +1,11 @@
 # LinkShare API
 
+[![Gem Version](https://badge.fury.io/rb/linkshare_api.png)](http://badge.fury.io/rb/linkshare_api)
+[![Build Status](https://travis-ci.org/rmarescu/linkshare_api.png)](https://travis-ci.org/rmarescu/linkshare_api)
+
 Ruby wrapper for [LinkShare Publisher Web Services](http://helpcenter.linkshare.com/publisher/categories.php?categoryid=71).
 Supported web services:
-* [Automated LinkGenerator](#automated_link_generator)
+* [Automated LinkGenerator](#automated-link-generator)
 
 If you need services that are not yet supported, feel free to [contribute](#contributing).
 For questions or bugs please [create an issue](../../issues/new).
@@ -27,7 +30,7 @@ Or install it yourself as:
 
 ## <a id="usage"></a>Usage
 
-Before using the services you need to set up your publisher token first. If you use Ruby on Rails, the token can be set in a configuration file (i.e. `app/config/initializers/linkshare_api.rb`), otherwise just set it in your script. The token can be found on LinkShare's Web Services page under the Links tab.
+Before using **LinkShare API** you need to set up your publisher token first. If you use Ruby on Rails, the token can be set in a configuration file (i.e. `app/config/initializers/linkshare_api.rb`), otherwise just set it in your script. The token can be found on LinkShare's Web Services page under the Links tab.
 
 ```ruby
 require "linkshare_api" # no need for RoR

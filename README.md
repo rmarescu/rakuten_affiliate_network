@@ -6,6 +6,7 @@
 Ruby wrapper for [LinkShare Publisher Web Services](http://helpcenter.linkshare.com/publisher/categories.php?categoryid=71).
 Supported web services:
 * [Automated LinkGenerator](#automated-link-generator)
+* [Merchandiser Query Tool](#merchandiser-query-tool)
 
 If you need services that are not yet supported, feel free to [contribute](#contributing).
 For questions or bugs please [create an issue](../../issues/new).
@@ -46,6 +47,57 @@ Below is an example of generating an affiliate URL for [Walmart](http://www.walm
 url = "http://www.walmart.com/cp/Electronics/3944?povid=P1171-C1093.2766-L33"
 affiliate_url = LinkshareAPI.link_generator(2149, url)
 ```
+
+### Merchandiser Query Tool
+
+Search for products using [Merchandiser Query Tool](http://helpcenter.linkshare.com/publisher/categories.php?categoryid=74) service.
+
+```ruby
+response = LinkshareAPI.product_search(keyword: "laptop")
+# Return the number of total records that match the search criteria
+puts response.total_matches # -1 means more than 4000 results (see doc)
+# Return the number of pages
+puts response.total_pages
+# Return the number of current page
+puts response.page_number
+# See the actual API call to Linkshare
+puts response.request.uri
+# Return items
+response.data.each do |item|
+  puts "Title: #{item.productname}"
+  puts "Price: #{item.price.__content__} #{item.price.currency}"
+  puts "URL: #{item.linkurl}"
+end
+```
+
+`product_search` accepts a hash as argument, and can include all available options. For a complete list of options please visit  http://helpcenter.linkshare.com/publisher/questions.php?questionid=652.
+
+```ruby
+# Search "laptop" only for Wal-Mart, within Electronics category,
+# sorted by price ascending, and limit to 10 items per page.
+options = {
+  keyword: "laptop",
+  mid: 2149, # Wal-Mart
+  cat: "Electronics",
+  max: 10,
+  sort: :retailprice,
+  sorttype: :asc
+}
+response = LinkshareAPI.product_search(options)
+response.data.each do |item|
+  # Do stuff
+end
+```
+
+If there are multiple pages, you can retrieve all pages by using the `all` method, as follows:
+
+```ruby
+response.all.each do |item|
+  # Do stuff
+end
+```
+
+When using the `all` method, `response` object is updated with the data returned by the last API request (last page). `response.all` returns the `data` array.
 
 ### Extra Configuration
 

@@ -3,6 +3,8 @@ require "linkshare_api/version"
 
 # Resources
 require "linkshare_api/link_generator"
+require "linkshare_api/product_search"
+require "linkshare_api/response"
 
 # Errors
 require "linkshare_api/errors/error"
@@ -12,7 +14,8 @@ require "linkshare_api/errors/invalid_request_error"
 
 module LinkshareAPI
   WEB_SERVICE_URIS = {
-    link_generator: "http://getdeeplink.linksynergy.com/createcustomlink.shtml"
+    link_generator: "http://getdeeplink.linksynergy.com/createcustomlink.shtml",
+    product_search: "http://productsearch.linksynergy.com/productsearch"
   }
 
   @api_timeout  = 30
@@ -31,5 +34,10 @@ module LinkshareAPI
   def self.link_generator(mid, murl)
     link_generator = LinkshareAPI::LinkGenerator.new
     link_generator.build(mid, murl)
+  end
+
+  def self.product_search(options = {})
+    product_search = LinkshareAPI::ProductSearch.new
+    product_search.query(options)
   end
 end

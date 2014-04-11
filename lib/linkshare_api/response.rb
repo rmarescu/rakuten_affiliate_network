@@ -4,14 +4,14 @@ module LinkshareAPI
   class Response
     attr_reader :total_matches, :total_pages, :page_number, :data, :request
 
-    def initialize(response)
+    def initialize(response, from)
       @request = response.request
-      result = response["result"]
-
+      result = response[LinkshareAPI::RESULT[from]]
+      @from = from
       @total_matches = result["TotalMatches"].to_i
       @total_pages = result["TotalPages"].to_i
-      @page_number = result["PageNumber"].to_i
-      @data = parse(result["item"])
+      @page_number = result[LinkshareAPI::PAGE_NUMBER[from]].to_i
+      @data = parse(result[LinkshareAPI::PARSE_RESULT[from]])
     end
 
     def all
@@ -19,7 +19,13 @@ module LinkshareAPI
         uri = Addressable::URI.parse(request.uri)
         params = uri.query_values
         params["pagenumber"] = page_number + 1
-        next_page_response = LinkshareAPI::ProductSearch.new.query(params)
+
+        if @from == :coupon_web_service
+          require 'pry'; binding.pry
+          next_page_response = LinkshareAPI::CouponWebService.new.query(params)
+        else
+          next_page_response = LinkshareAPI::ProductSearch.new.query(params)
+        end
         @page_number = next_page_response.page_number
         @data += next_page_response.data
       end

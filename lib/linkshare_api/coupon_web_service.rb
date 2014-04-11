@@ -3,15 +3,15 @@ require "httparty"
 
 module LinkshareAPI
   # For implementation details please visit
-  # http://helpcenter.linkshare.com/publisher/questions.php?questionid=652
-  class ProductSearch
+  # http://helpcenter.linkshare.com/publisher/questions.php?questionid=865
+  class CouponWebService
     include HTTParty
 
-    attr_reader :api_base_url, :api_timeout, :keyword, :token
+    attr_reader :api_base_url, :api_timeout, :token
 
     def initialize
       @token        = LinkshareAPI.token
-      @api_base_url = LinkshareAPI::WEB_SERVICE_URIS[:product_search]
+      @api_base_url = LinkshareAPI::WEB_SERVICE_URIS[:coupon_web_service]
       @api_timeout  = LinkshareAPI.api_timeout
 
       if @token.nil?
@@ -40,10 +40,10 @@ module LinkshareAPI
       if response.code != 200
         raise Error.new(response.message, response.code)
       end
-      error = response["result"]["Errors"]
-      raise InvalidRequestError.new(error["ErrorText"], error["ErrorID"].to_i) if error
+      error = response["fault"]
+      raise InvalidRequestError.new(error["errorstring"], error["errorcode"].to_i) if error
 
-      Response.new(response, :product_search)
+      Response.new(response, :coupon_web_service)
     end
   end
 end

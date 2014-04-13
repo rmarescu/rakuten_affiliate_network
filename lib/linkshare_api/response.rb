@@ -21,7 +21,6 @@ module LinkshareAPI
         params["pagenumber"] = page_number + 1
 
         if @from == :coupon_web_service
-          require 'pry'; binding.pry
           next_page_response = LinkshareAPI::CouponWebService.new.query(params)
         else
           next_page_response = LinkshareAPI::ProductSearch.new.query(params)

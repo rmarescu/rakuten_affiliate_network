@@ -104,20 +104,20 @@ When using the `all` method, `response` object is updated with the data returned
 Easy access to coupons and promotional link data for your advertisers using [Coupon Web Service](http://helpcenter.linkshare.com/publisher/questions.php?questionid=865)
 
 ```ruby
-#Search for promotion type: "Clearance" and "Dollar Amount Off" from Wal-Mart, within category  Apparel - Babies & Kids
-#in the US network
+# Search for promotion types "Clearance" (id 3) and "Dollar Amount Off" (id 5)
+# from Wal-Mart (id 2149) within category "Apparel - Babies & Kids" (id 3)
+# in the US network (id 1)
 options = {
-  promotiontype: 3|5 #3 - Clearance 5 - Dollar Amount Off,
-  mid: 2149, # Wal-Mart
-  cat: 3, # Apparel - Babies & Kids
-  network: 1 # 1 - US,
+  promotiontype: 3|5,
+  mid: 2149,
+  cat: 3,
+  network: 1
 }
 response = LinkshareAPI.coupon_web_service(options)
 response.data.each do |item|
   # Do stuff
 end
 ```
-
 
 ### Extra Configuration
 

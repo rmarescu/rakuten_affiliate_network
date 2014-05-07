@@ -14,6 +14,7 @@ module LinkshareAPI
       @token        = LinkshareAPI.token
       @api_base_url = LinkshareAPI::WEB_SERVICE_URIS[:link_generator]
       @api_timeout  = LinkshareAPI.api_timeout
+
       if @token.nil?
         raise AuthenticationError.new(
           "No token. Set your token by using 'LinkshareAPI.token = <TOKEN>'. " +

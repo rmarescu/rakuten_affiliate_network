@@ -7,6 +7,7 @@ Ruby wrapper for [LinkShare Publisher Web Services](http://helpcenter.linkshare.
 Supported web services:
 * [Automated LinkGenerator](#automated-link-generator)
 * [Merchandiser Query Tool](#merchandiser-query-tool)
+* [Coupon Web Service](#coupon-web-service)
 
 If you need services that are not yet supported, feel free to [contribute](#contributing).
 For questions or bugs please [create an issue](../../issues/new).
@@ -99,7 +100,7 @@ end
 
 When using the `all` method, `response` object is updated with the data returned by the last API request (last page). `response.all` returns the `data` array.
 
-### Coupon Web Services
+### Coupon Web Service
 
 Easy access to coupons and promotional link data for your advertisers using [Coupon Web Service](http://helpcenter.linkshare.com/publisher/questions.php?questionid=865)
 

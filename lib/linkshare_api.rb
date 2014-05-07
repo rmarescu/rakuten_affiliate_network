@@ -2,16 +2,16 @@
 require "linkshare_api/version"
 
 # Resources
-require "linkshare_api/link_generator"
-require "linkshare_api/product_search"
-require "linkshare_api/coupon_web_service"
-require "linkshare_api/response"
+require File.expand_path("../linkshare_api/link_generator", __FILE__)
+require File.expand_path("../linkshare_api/product_search", __FILE__)
+require File.expand_path("../linkshare_api/coupon_web_service", __FILE__)
+require File.expand_path("../linkshare_api/response", __FILE__)
 
 # Errors
-require "linkshare_api/errors/error"
-require "linkshare_api/errors/authentication_error"
-require "linkshare_api/errors/connection_error"
-require "linkshare_api/errors/invalid_request_error"
+require File.expand_path("../linkshare_api/errors/error", __FILE__)
+require File.expand_path("../linkshare_api/errors/authentication_error", __FILE__)
+require File.expand_path("../linkshare_api/errors/connection_error", __FILE__)
+require File.expand_path("../linkshare_api/errors/invalid_request_error", __FILE__)
 
 module LinkshareAPI
   WEB_SERVICE_URIS = {
@@ -35,7 +35,6 @@ module LinkshareAPI
     product_search: "PageNumber",
     coupon_web_service: "PageNumberRequested"
   }
-
 
   @api_timeout  = 30
 

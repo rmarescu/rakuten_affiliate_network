@@ -99,6 +99,26 @@ end
 
 When using the `all` method, `response` object is updated with the data returned by the last API request (last page). `response.all` returns the `data` array.
 
+### Coupon Web Services
+
+Easy access to coupons and promotional link data for your advertisers using [Coupon Web Service](http://helpcenter.linkshare.com/publisher/questions.php?questionid=865)
+
+```ruby
+#Search for promotion type: "Clearance" and "Dollar Amount Off" from Wal-Mart, within category  Apparel - Babies & Kids
+#in the US network
+options = {
+  promotiontype: 3|5 #3 - Clearance 5 - Dollar Amount Off,
+  mid: 2149, # Wal-Mart
+  cat: 3, # Apparel - Babies & Kids
+  network: 1 # 1 - US,
+}
+response = LinkshareAPI.coupon_web_service(options)
+response.data.each do |item|
+  # Do stuff
+end
+```
+
+
 ### Extra Configuration
 
 * `LinkshareAPI.api_timeout` - the timeout set when initiating requests to LinkShare Web Services (default value is 30 seconds)

@@ -28,4 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "webmock"
   s.add_development_dependency "test-unit"
   s.add_development_dependency "guard-test"
+  s.add_development_dependency "pry"
 end

@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version               = LinkshareAPI::VERSION
   s.authors               = ["Razvan Marescu"]
   s.email                 = ["razvan@marescu.net"]
-  s.description           = %q{Ruby wrapper for LinkShare Publisher Web Services. See http://helpcenter.linkshare.com/publisher/categories.php?categoryid=71.}
+  s.description           = %q{Ruby wrapper for LinkShare Publisher Web Services. See https://rakutenlinkshare.zendesk.com.}
   s.summary               = %q{Linkshare API}
   s.homepage              = "https://github.com/rmarescu/linkshare_api"
   s.license               = "MIT"

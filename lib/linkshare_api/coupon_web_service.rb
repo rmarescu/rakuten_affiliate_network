@@ -3,7 +3,7 @@ require "httparty"
 
 module LinkshareAPI
   # For implementation details please visit
-  # http://helpcenter.linkshare.com/publisher/questions.php?questionid=865
+  # https://rakutenlinkshare.zendesk.com/hc/en-us/articles/200919909-Using-the-Coupon-Web-Service
   class CouponWebService
     include HTTParty
 
@@ -18,7 +18,7 @@ module LinkshareAPI
         raise AuthenticationError.new(
           "No token. Set your token by using 'LinkshareAPI.token = <TOKEN>'. " +
           "You can retrieve your token from LinkhShare's Web Services page under the Links tab. " +
-          "See http://helpcenter.linkshare.com/publisher/questions.php?questionid=648 for details."
+          "See https://rakutenlinkshare.zendesk.com/hc/en-us/articles/200992487-What-is-a-Web-Services-Token-Feed-Token- for details."
         )
       end
     end

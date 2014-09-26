@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/linkshare_api.png)](http://badge.fury.io/rb/linkshare_api)
 [![Build Status](https://travis-ci.org/rmarescu/linkshare_api.png)](https://travis-ci.org/rmarescu/linkshare_api)
 
-Ruby wrapper for [LinkShare Publisher Web Services](http://helpcenter.linkshare.com/publisher/categories.php?categoryid=71).
+Ruby wrapper for [LinkShare Publisher Web Services](https://rakutenlinkshare.zendesk.com).
 Supported web services:
 * [Automated LinkGenerator](#automated-link-generator)
 * [Merchandiser Query Tool](#merchandiser-query-tool)
@@ -41,7 +41,7 @@ LinkshareAPI.token = ENV["LINKSHARE_TOKEN"]
 
 ### Automated Link Generator
 
-Generate affiliate URLs using [Automated LinkGenerator](http://helpcenter.linkshare.com/publisher/categories.php?categoryid=72) service.
+Generate affiliate URLs using [Automated LinkGenerator](https://rakutenlinkshare.zendesk.com/hc/en-us/articles/201343135-Automated-LinkGenerator-Guidelines) service.
 Below is an example of generating an affiliate URL for [Walmart](http://www.walmart.com). Walmart merchant code is `2149`.
 
 ```ruby
@@ -51,7 +51,7 @@ affiliate_url = LinkshareAPI.link_generator(2149, url)
 
 ### Merchandiser Query Tool
 
-Search for products using [Merchandiser Query Tool](http://helpcenter.linkshare.com/publisher/categories.php?categoryid=74) service.
+Search for products using [Merchandiser Query Tool](https://rakutenlinkshare.zendesk.com/hc/en-us/articles/201483905-Merchandiser-Query-Tool-API-Guidelines) service.
 
 ```ruby
 response = LinkshareAPI.product_search(keyword: "laptop")
@@ -71,7 +71,7 @@ response.data.each do |item|
 end
 ```
 
-`product_search` accepts a hash as argument, and can include all available options. For a complete list of options please visit  http://helpcenter.linkshare.com/publisher/questions.php?questionid=652.
+`product_search` accepts a hash as argument, and can include all available options. For a complete list of options please visit https://rakutenlinkshare.zendesk.com/hc/en-us/articles/201483905-Merchandiser-Query-Tool-API-Guidelines.
 
 ```ruby
 # Search "laptop" only for Wal-Mart, within Electronics category,
@@ -102,7 +102,7 @@ When using the `all` method, `response` object is updated with the data returned
 
 ### Coupon Web Service
 
-Easy access to coupons and promotional link data for your advertisers using [Coupon Web Service](http://helpcenter.linkshare.com/publisher/questions.php?questionid=865)
+Easy access to coupons and promotional link data for your advertisers using [Coupon Web Service](https://rakutenlinkshare.zendesk.com/hc/en-us/articles/200919909-Using-the-Coupon-Web-Service)
 
 ```ruby
 # Search for promotion types "Clearance" (id 3) and "Dollar Amount Off" (id 5)

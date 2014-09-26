@@ -1,4 +1,3 @@
-require "addressable/uri"
 require "httparty"
 
 module LinkshareAPI

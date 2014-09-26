@@ -5,12 +5,16 @@
 
 Ruby wrapper for [LinkShare Publisher Web Services](https://rakutenlinkshare.zendesk.com).
 Supported web services:
-* [Automated LinkGenerator](#automated-link-generator)
+* [Deep Linking](#deep-linking) (previously [Automated LinkGenerator](#automated-link-generator))
 * [Merchandiser Query Tool](#merchandiser-query-tool)
 * [Coupon Web Service](#coupon-web-service)
 
 If you need services that are not yet supported, feel free to [contribute](#contributing).
 For questions or bugs please [create an issue](../../issues/new).
+
+## <a id="requirement"></a>Requirements
+
+[Ruby](http://www.ruby-lang.org/en/downloads/) 1.9 or above.
 
 ## <a id="installation"></a>Installation
 
@@ -26,20 +30,55 @@ Or install it yourself as:
 
     $ gem install linkshare_api
 
-## <a id="requirement"></a>Requirements
-
-[Ruby](http://www.ruby-lang.org/en/downloads/) 1.9 or above.
-
-## <a id="usage"></a>Usage
+## <a id="configuration"></a>Configuration
 
 Before using **LinkShare API** you need to set up your publisher token first. If you use Ruby on Rails, the token can be set in a configuration file (i.e. `app/config/initializers/linkshare_api.rb`), otherwise just set it in your script. The token can be found on LinkShare's Web Services page under the Links tab.
 
 ```ruby
-require "linkshare_api" # no need for RoR
 LinkshareAPI.token = ENV["LINKSHARE_TOKEN"]
 ```
 
+Affiliate ID is required for using Deep Linking.
+
+```ruby
+LinkshareAPI.affiliate_id = ENV["LINKSHARE_AFFILIATE_ID"]
+```
+
+By default linkshare_api logs to STDOUT. To use your own logger implementation you have to specify it using `LinkshareAPI.logger`
+
+### Configuration example
+
+Would apply for Ruby on Rails. Create `app/config/initializers/linkshare_api.rb` and add the following content:
+
+```ruby
+LinkshareAPI.token = ENV["LINKSHARE_TOKEN"]
+LinkshareAPI.affiliate_id = ENV["LINKSHARE_AFFILIATE_ID"]
+LinkshareAPI.logger = Rails.logger
+```
+
+## <a id="usage"></a>Usage
+
+### Deep Linking
+
+Generate affiliate URLs using [Deep Linking](https://rakutenlinkshare.zendesk.com/hc/en-us/articles/201295755-Guide-to-Deep-Linking) service.
+Below is an example of generating an affiliate URL for [Walmart](http://www.walmart.com). Walmart merchant code is `2149`.
+
+```ruby
+require "linkshare_api" # No need for RoR
+
+LinkshareAPI.affiliate_id = ENV["LINKSHARE_AFFILIATE_ID"] # must be set in order to use Deep Linking, otherwise will fall back to Automated Link Generator
+url = "http://www.walmart.com/cp/Electronics/3944?povid=P1171-C1093.2766-L33"
+affiliate_url = LinkshareAPI.link_generator(2149, url)
+# http://click.linksynergy.com/deeplink?id=your_affiliate_id&mid=2149&murl=http%3A%2F%2Fwww.walmart.com%2Fcp%2FElectronics%2F3944%3Fpovid%3DP1171-C1093.2766-L33
+```
+
+**Note:** The link is generated manually, therefore you must ensure that the Affiliate ID provided is valid.
+
 ### Automated Link Generator
+
+**Deprecation Notice**
+
+**As of October 2014, Automated LinkGenerator is discontinued in favor of Deep Linking.** To use [Deep Linking](#deep-linking) instead, you only have to set `LinkshareAPI.affiliate_id`. Everything else remains the same.
 
 Generate affiliate URLs using [Automated LinkGenerator](https://rakutenlinkshare.zendesk.com/hc/en-us/articles/201343135-Automated-LinkGenerator-Guidelines) service.
 Below is an example of generating an affiliate URL for [Walmart](http://www.walmart.com). Walmart merchant code is `2149`.
@@ -47,6 +86,7 @@ Below is an example of generating an affiliate URL for [Walmart](http://www.walm
 ```ruby
 url = "http://www.walmart.com/cp/Electronics/3944?povid=P1171-C1093.2766-L33"
 affiliate_url = LinkshareAPI.link_generator(2149, url)
+# http://linksynergy.walmart.com/fs-bin/click?id=your_affiliate_id&subid=0&offerid=223073.1&type=10&tmpid=273&RD_PARM1=http%3A%2F%2Fwww.walmart.com%2Fcp%2FElectronics%2F3944%3F&RD_PARM2=povid%3DP1171-C1093.2766-L33
 ```
 
 ### Merchandiser Query Tool

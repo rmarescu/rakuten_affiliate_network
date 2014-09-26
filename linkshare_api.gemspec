@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   s.require_paths         = ["lib"]
 
   s.add_dependency "addressable", "~> 2.3"
-  s.add_dependency "formatador", "~>0.2"
   s.add_dependency "httparty", "~> 0.13"
   s.add_dependency "recursive-open-struct", "~> 0.5"
 

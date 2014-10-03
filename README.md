@@ -72,7 +72,7 @@ affiliate_url = LinkshareAPI.link_generator(2149, url)
 # http://click.linksynergy.com/deeplink?id=your_affiliate_id&mid=2149&murl=http%3A%2F%2Fwww.walmart.com%2Fcp%2FElectronics%2F3944%3Fpovid%3DP1171-C1093.2766-L33
 ```
 
-**Note:** The link is generated manually, therefore you must ensure that the Affiliate ID provided is valid.
+**Note:** The link is generated manually, therefore you must ensure that the Affiliate ID provided is valid and that merchant supports deeplinking.
 
 ### Automated Link Generator
 

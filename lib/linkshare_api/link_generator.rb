@@ -21,6 +21,8 @@ module LinkshareAPI
           "See https://rakutenlinkshare.zendesk.com/hc/en-us/articles/200992487-What-is-a-Web-Services-Token-Feed-Token- for details."
         )
       end
+
+      self.class.default_timeout @api_timeout
     end
 
     def build(mid, murl)
@@ -32,9 +34,9 @@ module LinkshareAPI
       query_string << "&murl=#{murl}"
       api_request_url = "#{api_base_url}?#{query_string}"
       begin
-        response = self.class.get(api_request_url, timeout: api_timeout)
-      rescue Timeout::Error
-        raise ConnectionError.new("Timeout error (#{timeout}s)")
+        response = self.class.get(api_request_url)
+      rescue Timeout::Error, Net::OpenTimeout
+        raise ConnectionError.new("Timeout error (#{api_timeout}s)")
       end
 
       if response.code != 200

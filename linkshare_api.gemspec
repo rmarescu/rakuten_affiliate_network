@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "addressable", "~> 2.3"
   s.add_dependency "httparty", "~> 0.13"
-  s.add_dependency "recursive-open-struct", "~> 1.0.1"
+  s.add_dependency "recursive-open-struct", "~> 1.0"
 
   s.add_development_dependency "bundler", "~> 1.6"
   s.add_development_dependency "rake"

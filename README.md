@@ -1,7 +1,7 @@
 # LinkShare API
 
 [![Gem Version](https://badge.fury.io/rb/linkshare_api.png)](http://badge.fury.io/rb/linkshare_api)
-[![Build Status](https://travis-ci.org/rmarescu/linkshare_api.png)](https://travis-ci.org/rmarescu/linkshare_api)
+[![Build Status](https://travis-ci.org/rmarescu/rakuten_affiliate_network.png)](https://travis-ci.org/rmarescu/rakuten_affiliate_network)
 
 Ruby wrapper for [LinkShare Publisher Web Services](https://rakutenlinkshare.zendesk.com).
 Supported web services:
